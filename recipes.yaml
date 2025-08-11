@@ -1,0 +1,44 @@
+- name: nextjs_tailwind_shadcn
+  description: "Initializes a new Next.js project with Tailwind CSS and ShadCN."
+  # Define placeholders that the user will be asked for.
+  args:
+    - project_name: "What is the name of your project?"
+  commands:
+    # Use placeholders like {{project_name}}
+    - name: "Initialize Next.js"
+      run: "npx create-next-app@latest {{project_name}}"
+      # This section is for pexpect to automate prompts
+      interactive:
+        - question: "Would you like to use TypeScript?"
+          answer: "y"
+        - question: "Would you like to use ESLint?"
+          answer: "y"
+        - question: "Would you like to use Tailwind CSS?"
+          answer: "y"
+        - question: "Would you like to use `src/` directory?"
+          answer: "y"
+        - question: "Would you like to use App Router?"
+          answer: "y"
+        - question: "Would you like to customize the default import alias?"
+          answer: "n"
+
+    - name: "Initialize ShadCN"
+      # 'cwd' changes the working directory for this specific command
+      run: "npx shadcn-ui@latest init"
+      cwd: "{{project_name}}" # Run this command inside the newly created project folder
+      interactive:
+        - question: "Which style would you like to use?"
+          answer: "\n" # Just press Enter for 'Default'
+        - question: "Which color would you like to use as base color?"
+          answer: "Slate\n" # Select 'Slate' and press Enter
+        - question: "Where is your global CSS file?"
+          answer: "\n"
+
+- name: nuxt_init
+  description: "Initializes a new Nuxt.js project."
+  args:
+    - project_name: "What is the name of your Nuxt project?"
+  commands:
+    - name: "Initialize Nuxt"
+      run: "npm create nuxt@latest {{project_name}}"
+      # Let this one be fully interactive by not providing an 'interactive' block

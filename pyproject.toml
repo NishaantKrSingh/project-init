@@ -11,3 +11,8 @@ dependencies = [
     "rich>=14.1.0",
     "typer[all]>=0.16.0",
 ]
+
+[project.scripts]
+# This creates the command-line entry point.
+# When installed, typing 'project-init' will run the 'main' function in 'main.py'
+project-init = "main:main"
