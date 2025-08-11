@@ -40,5 +40,5 @@
     - project_name: "What is the name of your Nuxt project?"
   commands:
     - name: "Initialize Nuxt"
-      run: "npm create nuxt@latest {{project_name}}"
+      run: "pnpm create nuxt@latest {{project_name}}"
       # Let this one be fully interactive by not providing an 'interactive' block
